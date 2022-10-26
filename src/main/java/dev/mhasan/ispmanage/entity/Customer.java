@@ -24,4 +24,5 @@ public class Customer {
     private LocalDate joinDate;
     private String email;
     private String password;
+    private String role;
 }
