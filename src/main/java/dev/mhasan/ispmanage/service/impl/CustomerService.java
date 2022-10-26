@@ -1,7 +1,8 @@
-package dev.mhasan.ispmanage.service;
+package dev.mhasan.ispmanage.service.impl;
 
 import dev.mhasan.ispmanage.entity.Customer;
 import dev.mhasan.ispmanage.repository.CustomerRepository;
+import dev.mhasan.ispmanage.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

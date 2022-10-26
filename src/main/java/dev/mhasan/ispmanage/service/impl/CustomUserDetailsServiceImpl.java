@@ -1,7 +1,6 @@
 package dev.mhasan.ispmanage.service.impl;
 
 import dev.mhasan.ispmanage.entity.Customer;
-import dev.mhasan.ispmanage.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
