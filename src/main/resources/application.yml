@@ -1,0 +1,12 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: ISP Management System
+  datasource:
+    url: jdbc:mysql://localhost:3306/isp
+    username: root
+    password: Shafin*71
+  jpa:
+    hibernate:
+      ddl-auto: update
