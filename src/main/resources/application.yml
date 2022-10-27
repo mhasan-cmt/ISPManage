@@ -9,4 +9,4 @@ spring:
     password: Shafin*71
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop

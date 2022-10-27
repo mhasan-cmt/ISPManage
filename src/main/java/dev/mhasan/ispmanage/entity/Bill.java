@@ -1,6 +1,6 @@
 package dev.mhasan.ispmanage.entity;
 
-import dev.mhasan.ispmanage.util.PaymentStatus;
+import dev.mhasan.ispmanage.enumeration.PaymentStatus;
 import lombok.Data;
 
 import javax.persistence.*;
