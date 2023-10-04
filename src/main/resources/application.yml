@@ -4,9 +4,10 @@ spring:
   application:
     name: ISP Management System
   datasource:
-    url: jdbc:mysql://localhost:3306/isp
-    username: root
-    password: Shafin*71
+    url: jdbc:mysql://localhost:3306/${DB_NAME:isp}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:Shafin*71}
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ## ddl-auto: create
+        ddl-auto: update
