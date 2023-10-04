@@ -23,6 +23,5 @@ public class Customer {
     private String connectionPass;
     private LocalDate joinDate;
     private String email;
-    private String password;
     private String role;
 }
