@@ -9,25 +9,29 @@ import dev.mhasan.ispmanage.service.IAreaService;
 import dev.mhasan.ispmanage.service.ICustomerService;
 import dev.mhasan.ispmanage.service.ILinemanService;
 import dev.mhasan.ispmanage.service.IPackageService;
+import dev.mhasan.ispmanage.service.impl.AreaService;
+import dev.mhasan.ispmanage.service.impl.CustomerService;
+import dev.mhasan.ispmanage.service.impl.LinemanService;
+import dev.mhasan.ispmanage.service.impl.PackageService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@RequiredArgsConstructor
 public class CustomerDtoAndEntityMapperImpl implements CustomerDtoAndEntityMapper {
-    @Autowired
-    private ICustomerService customerService;
-    @Autowired
-    private IPackageService packageService;
-    @Autowired
-    private ILinemanService linemanService;
-    @Autowired
-    private IAreaService areaService;
+    private final CustomerService customerService;
+    private final PackageService packageService;
+    private final LinemanService linemanService;
+
+    private AreaService areaService;
+
     @Override
     public Customer customerDtoToCustomerEntity(CustomerDTO customerDTO) {
-        if (customerDTO==null){
+        if (customerDTO == null) {
             return null;
         }
         Customer customer = new Customer();
-        if (customerDTO.getId()!=null){
-        customer = customerService.getCustomerById(customerDTO.getId());
+        if (customerDTO.getId() != null) {
+            customer = customerService.getCustomerById(customerDTO.getId());
         }
         customer.setName(customerDTO.getName());
         customer.setMobile(customerDTO.getMobile());

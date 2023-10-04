@@ -26,4 +26,24 @@ public class AreaService implements IAreaService {
     public Area addAnArea(Area area) {
         return areaRepository.save(area);
     }
+
+    @Override
+    public Area updateAreaById(Long id, Area area) {
+        Area area1 = areaRepository.findById(id).isPresent()?areaRepository.findById(id).get():null;
+        if (area1!=null){
+            area1.setName(area.getName());
+            return areaRepository.save(area1);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean deleteAreaById(Long id) {
+        Area area = areaRepository.findById(id).isPresent()?areaRepository.findById(id).get():null;
+        if (area!=null){
+            areaRepository.delete(area);
+            return true;
+        }
+        return false;
+    }
 }
