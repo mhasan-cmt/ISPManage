@@ -1,5 +1,6 @@
 package dev.mhasan.ispmanage.resource;
 
+import dev.mhasan.ispmanage.dto.LoginDto;
 import dev.mhasan.ispmanage.dto.UserDto;
 import dev.mhasan.ispmanage.entity.Role;
 import dev.mhasan.ispmanage.entity.User;
@@ -9,6 +10,9 @@ import dev.mhasan.ispmanage.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +31,12 @@ public class AuthController {
     private final IUserService userRepository;
     private final IRoleService roleService;
     private final PasswordEncoder passwordEncoder;
+    @PostMapping("/login")
+    public ResponseEntity<String> loginUser(@RequestBody LoginDto loginDto) {
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        return ResponseEntity.ok("User logged in successfully!");
+    }
 
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody UserDto userDto) {
