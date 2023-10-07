@@ -1,10 +1,11 @@
 package dev.mhasan.ispmanage.resource;
 
+import dev.mhasan.ispmanage.config.JWTGenerator;
+import dev.mhasan.ispmanage.dto.AuthResponseDto;
 import dev.mhasan.ispmanage.dto.LoginDto;
 import dev.mhasan.ispmanage.dto.UserDto;
 import dev.mhasan.ispmanage.entity.Role;
 import dev.mhasan.ispmanage.entity.User;
-import dev.mhasan.ispmanage.repository.UserRepository;
 import dev.mhasan.ispmanage.service.IRoleService;
 import dev.mhasan.ispmanage.service.IUserService;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 @RestController
 @RequestMapping("/v1/api/auth")
@@ -31,11 +30,13 @@ public class AuthController {
     private final IUserService userRepository;
     private final IRoleService roleService;
     private final PasswordEncoder passwordEncoder;
+    private final JWTGenerator tokenGenerator;
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody LoginDto loginDto) {
+    public ResponseEntity<AuthResponseDto> loginUser(@RequestBody LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return ResponseEntity.ok("User logged in successfully!");
+        String token = tokenGenerator.generateToken(authentication);
+        return ResponseEntity.ok(new AuthResponseDto(token));
     }
 
     @PostMapping("/register")
