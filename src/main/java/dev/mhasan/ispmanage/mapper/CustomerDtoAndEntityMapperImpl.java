@@ -63,7 +63,6 @@ public class CustomerDtoAndEntityMapperImpl implements CustomerDtoAndEntityMappe
         customerDTO.setConnectionPass(customer.getConnectionPass());
         customerDTO.setJoinDate(customer.getJoinDate());
         customerDTO.setEmail(customer.getEmail());
-        customerDTO.setPassword(customer.getPassword());
         customerDTO.setRole(customer.getRole());
         return customerDTO;
     }
