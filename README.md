@@ -1,2 +1,2 @@
 # ISPManage
-Building an ISP Manage to Practice & Fun. Contributions are appreciated.
+Building an ISP Management Backend for Practice & Fun. Contributions are appreciated.
